@@ -1,9 +1,8 @@
-# MERN Chat App
+# putter-app
 
 Live Link: TBA
 
 # Purpose
 
-Socket.io MERN app that can be placed into future apps
-# putter-app
-# putter-app
+App to help track my putting improvement
+
