@@ -1,14 +1,20 @@
+
+
 /* LATO FONT FROM GOOGLE FONTS */
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 /* GENERAL */
 * {
   box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+  color: #fefefe
 }
 
 html {
   height: 100vh;
+  background: url('./blurred-golf-background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1 {

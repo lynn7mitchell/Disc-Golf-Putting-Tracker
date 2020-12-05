@@ -1,150 +1,109 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import authenticate from "../utils/Authenticate";
 import setAuthToken from "../utils/setAuthtoken";
+import { Typography, Grid, TextField, Button } from "@material-ui/core";
 
-export class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      redirect: false,
-      email: "",
-      password: "",
-      errors: {}
-    };
-  }
-  componentDidMount() {
+export default function Login() {
+  const [redirect, setRedirect] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    // gets the bearer token to validate the user that is logged in
     const token = localStorage.getItem("example-app");
 
+    // if token is authenticated redirect page to /dashboard
     if (authenticate(token)) {
-      this.setState({
-        redirect: true
-      });
+      setRedirect(true);
     }
-  }
+  }, []);
 
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  // for for field change
+  const onChange = ({ target: { name, value } }) => {
+    setFormData({ ...formData, hasChanged: true, [name]: value });
   };
 
-  onSubmit = e => {
+  // Form Submit
+  const onSubmit = (e) => {
     e.preventDefault();
 
     const newUser = {
-      email: this.state.email,
-      password: this.state.password
+      email: formData.email,
+      password: formData.password
     };
-
-
     axios
       .post("/api/user/login", newUser)
-      .then(response => {
-        if (response.data.token) {
-          const { token } = response.data;
+      .then((res) => {
+        if (res.data.token) {
+          const { token } = res.data;
 
           localStorage.setItem("example-app", token);
           setAuthToken(token);
         }
-        this.setState({
-          redirect: true,
-          errors: {}
-        });
+        console.log('here')
+        setRedirect(true);
+        setErrors(errors);
       })
-      .catch(err =>
-        this.setState({
-          errors: err.response.data
-        })
-      );
+      .catch((err) => {
+        console.error(err.response.data,);
+        setErrors(err.response.data,);
+      });
   };
-  render() {
-    const styles = {
-      logo: {
-        display: "block",
-        margin: "0 auto",
-        width: "28vw"
-      },
-      error: {
-        color: "#cc0000",
-        fontSize: "0.8rem",
-        margin: 0
-      },
-      main: {
-        textAlign: "center",
-        marginTop: "25vh"
-      },
-      signupLink: {
-        color: "#26a69a"
-      }
-    };
 
-    const { errors } = this.state;
-
-    if (this.state.redirect) {
-      return <Redirect to="/dashboard" />;
-    }
-    return (
-      <div style={styles.main}>
-        <Link to={{ pathname: "/" }}>
-          <i className="material-icons back-button">arrow_back</i>
-        </Link>
-        <div className="container">
-          <h1>Log In</h1>
-          <div className="row">
-            <form onSubmit={this.onSubmit}>
-              
-                  <input
-                    id="email"
-                    type="email"
-                    className="validate"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                  />
-                  <label htmlFor="email">Email</label>
-                
-                {errors.user && <div style={styles.error}>{errors.user}</div>}
-          
-
-              
-                  <input
-                    id="password"
-                    type="password"
-                    className="validate"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                  />
-                  <label htmlFor="password">Password</label>
-                {errors.password && (
-                  <div style={styles.error}>{errors.password}</div>
-                )}
-                <button
-                  type="submit"
-                  name="action"
-                >
-                  Submit
-                  <i className="material-icons right">send</i>
-                </button>
-                <p>
-                  Don't have an account?{" "}
-                  <a href="/SignUp" style={styles.signupLink}>
-                    Click here to sign up!
-                  </a>
-                </p>
-              <div className="row">
-                <p>Demo Login:</p>
-                <p>Email: test@gmail.com</p>
-                <p>Password: test</p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
+  // When the user is logged in redirect is set to true in state. 
+  // Then the page redirects to dashboard
+  if (redirect) {
+    return <Redirect to="/dashboard" />;
   }
-}
+  return (
+    <div>
+    <form onSubmit={(e) => onSubmit(e)}>
+        <Typography variant="h5" align="center">
+          Login
+        </Typography>
+        <Grid container direction="column" justify="center" alignItems="center">
+        {errors.user ? <p>{errors.user}</p> : ''}
+        {errors.password ? <p>{errors.password}</p> : ''}
+          <Grid item>
+            <TextField
+              required
+              name="email"
+              label="Email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => onChange(e)}
+              InputProps={{ style: { color: "#fefefe" } }}
+            />
+          </Grid>
 
-export default Login;
+          <Grid item>
+            <TextField
+              required
+              name="password"
+              label="Password"
+              type="password"
+              value={formData.password}
+              onChange={(e) => onChange(e)}
+            />
+          </Grid>
+
+          <Grid item>
+            <Button
+              type="submit"
+              name="action"
+              variant="contained"
+              color="primary"
+            >
+              Login
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </div>
+  );
+}
