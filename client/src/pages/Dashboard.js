@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import { Typography, Grid, TextField, Button } from "@material-ui/core";
+import { Redirect, Link } from "react-router-dom";
+import {
+  Typography,
+  Grid,
+  TextField,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+} from "@material-ui/core";
 import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
 
 export default function Dashboard() {
   const [user, setUser] = useState({});
   const [redirect, setRedirect] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    howManyPutts: 5,
+  });
   useEffect(() => {
     // gets the bearer token to validate the user that is logged in
     const token = localStorage.getItem("example-app");
@@ -20,31 +32,103 @@ export default function Dashboard() {
       .get("/api/user")
       .then((res) => {
         setUser(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err.res.data);
+        setRedirect(true);
       });
   }, []);
-  const handleLogout = () => {
+
+  // Logout
+  const handleLogout = (e) => {
     localStorage.removeItem("example-app");
     setRedirect(true);
   };
 
+  // Dialog Functions
+  const handleOpenDialog = (e) => {
+    setDialogOpen(true);
+  };
+
+  const handleCloseDialog = (e) => {
+    setDialogOpen(false);
+  };
+
+  // for for field change
+  const onChange = ({ target: { name, value } }) => {
+    setFormData({ ...formData, hasChanged: true, [name]: value });
+  };
+
+  // if user is not logged in they will be redirected to the homepage
   if (redirect) {
     return <Redirect to="/" />;
   }
+  if (loading) {
+    return (
+      <Typography variant="h2" align="center">
+        Loading...
+      </Typography>
+    );
+  }
   return (
     <div>
-      <h1>Dashboard</h1>
-      <h2>Welcome {user.firstName + " " + user.lastName}</h2>
+      <Typography variant="h2" align="center">
+        Welcome {user.firstName + " " + user.lastName}
+      </Typography>
+
       <Button
-        className="logout-button"
+        onClick={(e) => handleOpenDialog(e)}
+        variant="contained"
+        color="primary"
+      >
+        Start Round
+      </Button>
+      <Link to="/stats">
+        <Button variant="contained" color="primary">
+          My Stats
+        </Button>
+      </Link>
+      <Button
         onClick={(e) => handleLogout(e)}
         variant="contained"
         color="primary"
       >
         Log Out
       </Button>
+
+      <Dialog
+        open={dialogOpen}
+        onClose={(e) => handleCloseDialog(e)}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogContent>
+          <DialogContentText>
+            How many total putts do you want to attempt?
+          </DialogContentText>
+          <DialogContentText>Must be a multiple of 5.</DialogContentText>
+          <TextField
+            variant="outlined"
+            label="How many?"
+            margin="dense"
+            id="howManyPutts"
+            name="howManyPutts"
+            type="number"
+            onChange={(e) => onChange(e)}
+            InputProps={{ inputProps: { min: 5, step: 5 } }}
+          />
+          <Link
+            to={{
+              pathname: "/practice",
+              state: { howManyPutts: formData.howManyPutts },
+            }}
+          >
+            <Button variant="contained" color="primary">
+              Start
+            </Button>
+          </Link>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

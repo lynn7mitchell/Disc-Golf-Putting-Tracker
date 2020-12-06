@@ -61,12 +61,12 @@ export default function Login() {
     return <Redirect to="/dashboard" />;
   }
   return (
-    <div>
+    <Grid container direction='column' alignItems="center" justify='center' style={{paddingTop: '200px'}}>
     <form onSubmit={(e) => onSubmit(e)}>
         <Typography variant="h5" align="center">
           Login
         </Typography>
-        <Grid container direction="column" justify="center" alignItems="center">
+        <Grid container direction="column" justify="space-between" alignItems="center" >
         {errors.user ? <p>{errors.user}</p> : ''}
         {errors.password ? <p>{errors.password}</p> : ''}
           <Grid item>
@@ -94,6 +94,7 @@ export default function Login() {
 
           <Grid item>
             <Button
+            fullWidth
               type="submit"
               name="action"
               variant="contained"
@@ -104,6 +105,10 @@ export default function Login() {
           </Grid>
         </Grid>
       </form>
-    </div>
+
+
+
+
+    </Grid>
   );
 }

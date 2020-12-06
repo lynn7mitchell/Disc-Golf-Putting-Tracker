@@ -10,20 +10,23 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Practice from "./pages/Practice";
+import Stats from "./pages/Stats";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            {/* 404 page */}
-            <Route exact component={NoMatch} />
-          </Switch>
-        </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/practice" component={Practice} />
+          <PrivateRoute exact path="/stats" component={Stats} />
+          {/* 404 page */}
+          <Route exact component={NoMatch} />
+        </Switch>
+      </Router>
     </ThemeProvider>
   );
 }
