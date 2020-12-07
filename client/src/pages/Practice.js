@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Practice(state) {
   const [redirect, setRedirect] = useState(false);
   const [distanceFromBasket, setDistanceFromBasket] = useState("10");
+  const [totalMadeForTheRound, setTotalMadeForTheRound] = useState(0)
   const [numberOfThrows, setNumberOfThrows] = useState(
     state.history.location.state.howManyPutts
   );
@@ -61,6 +62,7 @@ export default function Practice(state) {
   };
 
   const onClick = (e) => {
+    setTotalMadeForTheRound(howDidYouMiss[distanceFromBasket + 'ft'].totalMade += totalMadeForTheRound)
     if (parseInt(distanceFromBasket) !== 30) {
       setDistanceFromBasket(parseInt(distanceFromBasket) + 5);
       document.getElementById("howManyMade").value = 0;
@@ -73,7 +75,7 @@ export default function Practice(state) {
       <Redirect
         to={{
           pathname: "/results",
-          state: { numberOfThrows, howDidYouMiss },
+          state: { numberOfThrows, howDidYouMiss, totalMadeForTheRound },
         }}
       />
     );
