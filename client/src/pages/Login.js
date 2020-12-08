@@ -61,16 +61,17 @@ export default function Login() {
     return <Redirect to="/dashboard" />;
   }
   return (
-    <Grid container direction='column' alignItems="center" justify='center' style={{paddingTop: '200px'}}>
+    <Grid container direction='column' alignItems="center" justify='space-between' style={{marginTop: '40px'}}>
     <form onSubmit={(e) => onSubmit(e)}>
-        <Typography variant="h5" align="center">
+        <Typography variant="h4" align="center">
           Login
         </Typography>
         <Grid container direction="column" justify="space-between" alignItems="center" >
         {errors.user ? <p>{errors.user}</p> : ''}
         {errors.password ? <p>{errors.password}</p> : ''}
-          <Grid item>
+          <Grid item style={{marginTop: '20px'}}>
             <TextField
+            style={{width: '60vw'}}
               required
               name="email"
               label="Email"
@@ -81,8 +82,9 @@ export default function Login() {
             />
           </Grid>
 
-          <Grid item>
+          <Grid item style={{marginTop: '20px'}}>
             <TextField
+            style={{width: '60vw'}}
               required
               name="password"
               label="Password"
@@ -92,8 +94,9 @@ export default function Login() {
             />
           </Grid>
 
-          <Grid item>
+          <Grid item style={{marginTop: '20px'}}>
             <Button
+            style={{marginTop: '10px'}}
             fullWidth
               type="submit"
               name="action"

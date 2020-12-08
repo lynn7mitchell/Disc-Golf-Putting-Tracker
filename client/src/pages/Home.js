@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import Login from "./Login";
 import SignUp from "./SignUp";
 export default function Home() {
@@ -16,21 +16,24 @@ export default function Home() {
       : setLoginOrSignup("Login");
   };
   return (
-    <div>
-      <Typography variant="h3" align="center">
-        Putting Tracker
-      </Typography>
-
-      {loginOrSignup === "Login" ? <Login /> : <SignUp />}
-
-      <Typography
-        align="center"
-        onClick={(e) => {
-          changeForm(e);
-        }}
-      >
-        {loginOrSignupQuestion}
-      </Typography>
-    </div>
+    <Grid container direction="column" justify="center" alignItems="center" style={{height: '100vh'}}>
+      <Grid item>
+        <Typography variant="h3" align="center">
+          Putting Tracker
+        </Typography>
+      </Grid>
+      <Grid item>{loginOrSignup === "Login" ? <Login /> : <SignUp />}</Grid>
+      <Grid item>
+        <Typography
+          style={{ marginTop: "20px" }}
+          align="center"
+          onClick={(e) => {
+            changeForm(e);
+          }}
+        >
+          {loginOrSignupQuestion}
+        </Typography>
+      </Grid>
+    </Grid>
   );
 }
