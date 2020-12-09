@@ -99,7 +99,6 @@ export default function Practice(state) {
           
           <TextField
             className="how-many-field"
-
             variant="outlined"
             label="How many?"
             margin="dense"
