@@ -72,6 +72,7 @@ export default function Login() {
       direction="column"
       alignItems="center"
       className="grid-margin"
+      justify="space-around"
     >
       <form onSubmit={(e) => onSubmit(e)}>
         <Typography variant="h4" align="center">

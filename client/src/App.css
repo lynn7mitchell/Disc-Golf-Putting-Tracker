@@ -26,3 +26,11 @@ html {
 .form-field {
   width: 60vw;
 }
+
+.button-width{
+  width: 70%;
+  margin-top: 20px !important;
+}
+
+
+

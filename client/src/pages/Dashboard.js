@@ -72,30 +72,41 @@ export default function Dashboard() {
     );
   }
   return (
-    <div>
-      <Typography variant="h2" align="center">
+    <Grid container direction="column" justify="center" alignItems="center" style={{height: '90vh'}}>
+
+      <Typography variant="h4" align="center">
         Welcome {user.firstName + " " + user.lastName}
       </Typography>
 
-      <Button
-        onClick={(e) => handleOpenDialog(e)}
-        variant="contained"
-        color="primary"
-      >
-        Start Round
-      </Button>
-      <Link to="/stats">
-        <Button variant="contained" color="primary">
-          My Stats
+      <Grid item className="button-width">
+        <Button
+        fullWidth
+          onClick={(e) => handleOpenDialog(e)}
+          variant="contained"
+          color="primary"
+        >
+          Start Round
         </Button>
-      </Link>
-      <Button
-        onClick={(e) => handleLogout(e)}
-        variant="contained"
-        color="primary"
-      >
-        Log Out
-      </Button>
+      </Grid>
+
+      <Grid item className="button-width">
+        <Link to="/stats">
+          <Button fullWidth variant="contained" color="primary">
+            My Stats
+          </Button>
+        </Link>
+      </Grid>
+      <Grid item className="button-width">
+        <Button
+        fullWidth
+          onClick={(e) => handleLogout(e)}
+          variant="contained"
+          color="primary"
+          
+        >
+          Log Out
+        </Button>
+      </Grid>
 
       <Dialog
         open={dialogOpen}
@@ -129,6 +140,6 @@ export default function Dashboard() {
           </Link>
         </DialogContent>
       </Dialog>
-    </div>
+    </Grid>
   );
 }

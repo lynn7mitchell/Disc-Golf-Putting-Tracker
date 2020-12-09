@@ -175,7 +175,7 @@ export default function SignUp() {
             onChange={(e) => onChange(e)}
           />
         </Grid>
-        <Grid item className="form-field-container form-field">
+        <Grid item className="form-field-container">
           <Button
             fullWidth
             className="form-field-container"
