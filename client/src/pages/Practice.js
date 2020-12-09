@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Practice(state) {
   const [redirect, setRedirect] = useState(false);
   const [distanceFromBasket, setDistanceFromBasket] = useState("10");
-  const [totalMadeForTheRound, setTotalMadeForTheRound] = useState(0)
+  const [totalMadeForTheRound, setTotalMadeForTheRound] = useState(0);
   const [numberOfThrows, setNumberOfThrows] = useState(
     state.history.location.state.howManyPutts
   );
@@ -62,12 +62,16 @@ export default function Practice(state) {
   };
 
   const onClick = (e) => {
-    setTotalMadeForTheRound(howDidYouMiss[distanceFromBasket + 'ft'].totalMade += totalMadeForTheRound)
+    setTotalMadeForTheRound(
+      (howDidYouMiss[
+        distanceFromBasket + "ft"
+      ].totalMade += totalMadeForTheRound)
+    );
     if (parseInt(distanceFromBasket) !== 30) {
       setDistanceFromBasket(parseInt(distanceFromBasket) + 5);
       document.getElementById("howManyMade").value = 0;
     } else {
-      setRedirect(true)
+      setRedirect(true);
     }
   };
   if (redirect) {
@@ -81,26 +85,52 @@ export default function Practice(state) {
     );
   } else {
     return (
-      <div>
-        <Typography variant="h2">{distanceFromBasket}ft</Typography>
-        <TextField
-          variant="outlined"
-          label="How many?"
-          margin="dense"
-          id="howManyMade"
-          name={distanceFromBasket}
-          type="number"
-          onChange={(e) => onChange(e)}
-          InputProps={{
-            inputProps: { min: 0, max: parseInt(numberOfThrows) / 5, step: 1 },
-          }}
-        />
-        <Typography variant="h3"> / {parseInt(numberOfThrows) / 5}</Typography>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        style={{ height: "90vh" }}
+      >
+        <Grid item>
+          <Typography variant="h2">{distanceFromBasket}ft</Typography>
+        </Grid>
+        <Grid container direction='row' justify='center' className="form-field-container">
+          
+          <TextField
+            className="how-many-field"
 
-        <Button onClick={(e) => onClick(e)} variant="contained" color="primary">
-          {distanceFromBasket == 30 ? "Finished" : "Next"}
-        </Button>
-      </div>
+            variant="outlined"
+            label="How many?"
+            margin="dense"
+            id="howManyMade"
+            name={distanceFromBasket}
+            type="number"
+            onChange={(e) => onChange(e)}
+            InputProps={{
+              inputProps: {
+                min: 0,
+                max: parseInt(numberOfThrows) / 5,
+                step: 1,
+              },
+            }}
+          />
+          <Typography variant="h3" style={{marginLeft: '10px'}}>
+            / {parseInt(numberOfThrows) / 5}
+          </Typography>
+
+          
+            
+        </Grid>
+        <Grid item className="form-field-container form-field">
+        <Button
+        fullWidth
+        onClick={(e) => onClick(e)}
+        variant="contained"
+        color="primary"
+      >{distanceFromBasket == 30 ? "Finished" : "Next"}
+          </Button></Grid>
+      </Grid>
     );
   }
 }

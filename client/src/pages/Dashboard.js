@@ -72,15 +72,20 @@ export default function Dashboard() {
     );
   }
   return (
-    <Grid container direction="column" justify="center" alignItems="center" style={{height: '90vh'}}>
-
+    <Grid
+      container
+      direction="column"
+      justify="center"
+      alignItems="center"
+      style={{ height: "90vh" }}
+    >
       <Typography variant="h4" align="center">
         Welcome {user.firstName + " " + user.lastName}
       </Typography>
 
       <Grid item className="button-width">
         <Button
-        fullWidth
+          fullWidth
           onClick={(e) => handleOpenDialog(e)}
           variant="contained"
           color="primary"
@@ -98,11 +103,10 @@ export default function Dashboard() {
       </Grid>
       <Grid item className="button-width">
         <Button
-        fullWidth
+          fullWidth
           onClick={(e) => handleLogout(e)}
           variant="contained"
           color="primary"
-          
         >
           Log Out
         </Button>
