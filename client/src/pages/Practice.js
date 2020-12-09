@@ -62,11 +62,6 @@ export default function Practice(state) {
   };
 
   const onClick = (e) => {
-    setTotalMadeForTheRound(
-      (howDidYouMiss[
-        distanceFromBasket + "ft"
-      ].totalMade += totalMadeForTheRound)
-    );
     if (parseInt(distanceFromBasket) !== 30) {
       setDistanceFromBasket(parseInt(distanceFromBasket) + 5);
       document.getElementById("howManyMade").value = 0;
