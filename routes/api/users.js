@@ -150,8 +150,19 @@ module.exports = function (app) {
     });
 
 
-
-
+// PUT push newPracticeRound
+    app.put('/api/user/practiceRounds', passport.authenticate('jwt', { session: false }), (req, res) => {
+        console.log("put route", req.body)
+        db.User.findByIdAndUpdate(req.user.id, {$push:{practiceRounds: req.body}})
+        .then(user => {
+            res.status(200).json({
+                message: "User account successfully created.",
+                userCreated: true
+            })
+        })
+        .catch(err => console.log(err))
+        
+    });
 
     // end
 }
