@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { Typography, Grid, Button } from "@material-ui/core";
 import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
 export default function Results(state) {
+  const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true)
   const [howManyPutts, setHowManyPutts] = useState(
@@ -72,11 +74,14 @@ export default function Results(state) {
 
     axios
       .put("/api/user/practiceRounds", updatedUser)
-      .then(console.log(updatedUser))
+      .then(setRedirect(true))
       .catch((err) => {
         console.error(err.response.data);
       });
   };
+  if (redirect) {
+    return <Redirect to="/dashboard" />;
+  }  
   if (loading) {
     return (
       <Typography variant="h2" align="center">
