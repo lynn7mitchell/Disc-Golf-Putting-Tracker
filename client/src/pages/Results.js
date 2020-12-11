@@ -125,6 +125,7 @@ export default function Results(state) {
       </Grid>
       <Grid item>
         <Button
+        style={{marginTop: '10px'}}
           fullWidth
           type="submit"
           variant="contained"
@@ -134,6 +135,17 @@ export default function Results(state) {
           }}
         >
           Save Round
+        </Button>
+
+        <Button
+        style={{marginTop: '10px'}}
+          fullWidth
+          type="submit"
+          variant="contained"
+          color="primary"
+          onClick={(e)=>setRedirect(true)}
+        >
+          Don't Save
         </Button>
       </Grid>
     </Grid>
