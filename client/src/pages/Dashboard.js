@@ -80,7 +80,7 @@ export default function Dashboard() {
       style={{ height: "90vh" }}
     >
       <Typography variant="h4" align="center">
-        Welcome {user.firstName + " " + user.lastName}
+        Welcome, {user.firstName + " " + user.lastName}
       </Typography>
 
       <Grid item className="button-width">

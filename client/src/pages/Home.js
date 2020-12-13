@@ -16,7 +16,7 @@ export default function Home() {
       : setLoginOrSignup("Login");
   };
   return (
-    <Grid container direction="column" justify="center" alignItems="center" style={{height: '100vh'}}>
+    <Grid container direction="column" justify="center" alignItems="center" className='mobile-container' style={{height: '100vh'}}>
       <Grid item>
         <Typography variant="h3" align="center">
           Putting Tracker

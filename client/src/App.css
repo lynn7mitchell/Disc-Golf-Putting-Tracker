@@ -38,4 +38,17 @@ height:30px;
 }
 
 
+@media only screen and (min-width: 600px) {
+  .form-field {
+    width: 30vw;
+  }
+
+  
+  .button-width{
+    width: 30%;
+    margin-top: 20px !important;
+  }
+  
+}
+
 
