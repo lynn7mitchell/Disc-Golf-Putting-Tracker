@@ -15,6 +15,10 @@ html {
   background-size: cover;
 }
 
+a {
+  text-decoration: none;
+}
+
 .grid-margin {
   margin-top: 40px;
 }
@@ -37,6 +41,12 @@ html {
 height:30px;
 }
 
+.material-icons{
+  font-size: 25px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
 
 @media only screen and (min-width: 600px) {
   .form-field {

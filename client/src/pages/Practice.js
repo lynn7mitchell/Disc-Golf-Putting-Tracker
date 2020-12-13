@@ -13,35 +13,35 @@ export default function Practice(state) {
   const [howDidYouMiss, setHowDidYouMiss] = useState({
     "10ft": {
       totalMade: 0,
-      totalMissed: 0,
+      totalMissed: (state.history.location.state.howManyPutts / 5),
       airBall: 0,
       hitTheCage: 0,
       hitTheBand: 0,
     },
     "15ft": {
       totalMade: 0,
-      totalMissed: 0,
+      totalMissed: (state.history.location.state.howManyPutts / 5),
       airBall: 0,
       hitTheCage: 0,
       hitTheBand: 0,
     },
     "20ft": {
       totalMade: 0,
-      totalMissed: 0,
+      totalMissed: (state.history.location.state.howManyPutts / 5),
       airBall: 0,
       hitTheCage: 0,
       hitTheBand: 0,
     },
     "25ft": {
       totalMade: 0,
-      totalMissed: 0,
+      totalMissed: (state.history.location.state.howManyPutts / 5),
       airBall: 0,
       hitTheCage: 0,
       hitTheBand: 0,
     },
     "30ft": {
       totalMade: 0,
-      totalMissed: 0,
+      totalMissed: (state.history.location.state.howManyPutts / 5),
       airBall: 0,
       hitTheCage: 0,
       hitTheBand: 0,
@@ -55,13 +55,14 @@ export default function Practice(state) {
       hasChanged: true,
       [currentDistanceFromBasket]: {
         ...howDidYouMiss[currentDistanceFromBasket],
-        totalMissed: numberOfThrows / 5 - value,
+        totalMissed: (numberOfThrows / 5) - value,
         totalMade: parseInt(value),
       },
     });
   };
 
   const onClick = (e) => {
+    console.log(e.target.value)
     if (parseInt(distanceFromBasket) !== 30) {
       setDistanceFromBasket(parseInt(distanceFromBasket) + 5);
       document.getElementById("howManyMade").value = 0;

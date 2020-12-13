@@ -132,6 +132,7 @@ export default function Dashboard() {
             onChange={(e) => onChange(e)}
             InputProps={{ inputProps: { min: 5, step: 5 } }}
           />
+          <br/>
           <Link
             to={{
               pathname: "/practice",
