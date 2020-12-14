@@ -16,7 +16,7 @@ export default function Home() {
       : setLoginOrSignup("Login");
   };
   return (
-    <Grid container direction="column" justify="center" alignItems="center"  style={{height: '100vh'}}>
+    <Grid container direction="column" justify="center" alignItems="center"  style={{height: '90vh'}}>
       <Grid item>
         <Typography variant="h3" align="center">
           Putting Tracker
@@ -33,6 +33,12 @@ export default function Home() {
         >
           {loginOrSignupQuestion}
         </Typography>
+
+        <Typography  style={{ marginTop: "20px" }}
+          align="left">
+          Email: demotest@gmail.com <br/>
+          Password: DemoTest#1
+          </Typography>
       </Grid>
     </Grid>
   );
