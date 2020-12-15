@@ -15,6 +15,8 @@ import axios from "axios";
 export default function Dashboard() {
   const [user, setUser] = useState({});
   const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState('');
+  const [numberOfThrowsSet, setNumberOfThrowsSet] = useState(false)
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -57,12 +59,31 @@ export default function Dashboard() {
 
   // for for field change
   const onChange = ({ target: { name, value } }) => {
+    // if(value < 5 || value % 5 !== 0){
+    //   setError('the amount entered needs to be a multiple of 5')
+    // }
     setFormData({ ...formData, hasChanged: true, [name]: value });
   };
 
+  const onClick = e =>{
+    const value = document.getElementById('howManyPutts').value
+    if(value < 5 || value % 5 !== 0){
+      setError('the amount entered needs to be a multiple of 5')
+      return(error)
+    }else{
+      setError('')
+      setNumberOfThrowsSet(true)
+    }
+  }
   // if user is not logged in they will be redirected to the homepage
   if (redirect) {
     return <Redirect to="/" />;
+  }
+  if(numberOfThrowsSet){
+    return <Redirect to={{
+      pathname: "/practice",
+      state: { howManyPutts: formData.howManyPutts },
+    }}/>;
   }
   if (loading) {
     return (
@@ -122,6 +143,7 @@ export default function Dashboard() {
             How many total putts do you want to attempt?
           </DialogContentText>
           <DialogContentText>Must be a multiple of 5.</DialogContentText>
+          <DialogContentText>{error}</DialogContentText>
           <TextField
             variant="outlined"
             label="How many?"
@@ -133,16 +155,16 @@ export default function Dashboard() {
             InputProps={{ inputProps: { min: 5, step: 5 } }}
           />
           <br/>
-          <Link
+          {/* <Link
             to={{
               pathname: "/practice",
               state: { howManyPutts: formData.howManyPutts },
             }}
-          >
-            <Button variant="contained" color="primary">
+          > */}
+            <Button variant="contained" color="primary" onClick={(e)=>onClick(e)}>
               Start
             </Button>
-          </Link>
+          {/* </Link> */}
         </DialogContent>
       </Dialog>
     </Grid>
