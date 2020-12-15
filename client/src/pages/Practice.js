@@ -5,6 +5,7 @@ import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
 export default function Practice(state) {
   const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState('')
   const [distanceFromBasket, setDistanceFromBasket] = useState("10");
   const [totalMadeForTheRound, setTotalMadeForTheRound] = useState(0);
   const [numberOfThrows, setNumberOfThrows] = useState(
@@ -62,7 +63,14 @@ export default function Practice(state) {
   };
 
   const onClick = (e) => {
-    console.log(e.target.value);
+    if(document.getElementById("howManyMade").value > state.history.location.state.howManyPutts / 5){
+      setError("The amount you typed in needs to be less than the number of throws")
+      return(console.log(error))
+    }else if(document.getElementById("howManyMade").value < 0){
+      setError("The amount you typed in needs to be more than 0")
+      return(console.log(error))
+    }
+   setError('')
     if (parseInt(distanceFromBasket) !== 30) {
       setDistanceFromBasket(parseInt(distanceFromBasket) + 5);
       document.getElementById("howManyMade").value = 0;
@@ -88,6 +96,9 @@ export default function Practice(state) {
         <Grid container direction="column" justify="center" alignItems="center" style={{ height: "90vh" }}>
           <Grid item>
             <Typography variant="h2">{distanceFromBasket}ft</Typography>
+          </Grid>
+          <Grid item>
+            <Typography>{error}</Typography>
           </Grid>
           <Grid
             container
