@@ -65,17 +65,17 @@ export default function Stats() {
                       parseInt(practiceRound.tenFt.totalMissed)}
                   </Typography>
                   <Typography variant="h6" color="primary">
-                    25ft: {practiceRound.fifteenFt.totalMade} /{" "}
+                    15ft: {practiceRound.fifteenFt.totalMade} /{" "}
                     {parseInt(practiceRound.fifteenFt.totalMade) +
                       parseInt(practiceRound.fifteenFt.totalMissed)}
                   </Typography>
                   <Typography variant="h6" color="primary">
-                    15ft: {practiceRound.twentyFt.totalMade} /{" "}
+                    20ft: {practiceRound.twentyFt.totalMade} /{" "}
                     {parseInt(practiceRound.twentyFt.totalMade) +
                       parseInt(practiceRound.twentyFt.totalMissed)}
                   </Typography>
                   <Typography variant="h6" color="primary">
-                    20ft: {practiceRound.twentyFiveFt.totalMade} /{" "}
+                    25ft: {practiceRound.twentyFiveFt.totalMade} /{" "}
                     {parseInt(practiceRound.twentyFiveFt.totalMade) +
                       parseInt(practiceRound.twentyFiveFt.totalMissed)}
                   </Typography>
