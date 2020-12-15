@@ -16,7 +16,7 @@ export default function Home() {
       : setLoginOrSignup("Login");
   };
   return (
-    <Grid container direction="column" justify="center" alignItems="center" wrap='nowrap'  style={{height: '100vh', overflow: 'hidden'}} >
+    <Grid container direction="column" justify="center" alignItems="center" wrap='nowrap'  style={{height: '90vh', overflow: 'hidden'}} >
       <Grid item>
         <Typography variant="h3" align="center">
           Putting Tracker

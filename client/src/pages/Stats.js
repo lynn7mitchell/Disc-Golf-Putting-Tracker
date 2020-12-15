@@ -54,7 +54,7 @@ export default function Stats() {
           console.log(date);
           return (
             <Grid item>
-              <Card style={{ width: "70vw", marginTop: "20px" }}>
+              <Card className="stats-card">
                 <CardContent>
                   <Typography variant="h5" color="primary">
                     {date}
