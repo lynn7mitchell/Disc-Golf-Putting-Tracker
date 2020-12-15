@@ -18,18 +18,19 @@
 
 ## What's it look like?
 
-## Home
-![home | width=30](./client/src/screenshots/home.png)
+### Home
+<img src="./client/src/screenshots/home.png" width="30%">
 
-## Dashboard
-![dashboard | width=30](./client/src/screenshots/dashboard.png)
+### Dashboard
+<img src="./client/src/screenshots/dashboard.png" width="30%">
 
-## Practice
-![practice | width=30](./client/src/screenshots/practice.png)
+### Practice
+<img src="./client/src/screenshots/practice.png" width="30%">
 
-## Results
-![results | width=30](./client/src/screenshots/results.png)
+### Results
+<img src="./client/src/screenshots/results.png" width="30%">
 
-## Stats
-![stats | width=30](./client/src/screenshots/stats.png)
+### Stats
+<img src="./client/src/screenshots/stats.png" width="30%">
+
 
