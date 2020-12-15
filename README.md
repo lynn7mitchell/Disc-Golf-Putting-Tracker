@@ -1,6 +1,6 @@
 # Putting Tracker
 
-    Live Link: Live Link: https://putting-app.herokuapp.com/
+    Live Link: https://disc-golf-putting-tracker.herokuapp.com/
 
 ## Purpose
 
