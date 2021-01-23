@@ -106,12 +106,12 @@ export default function Practice(state) {
             justify="center"
             className="form-field-container"
           >
-            <TextField
-              className="how-many-field"
-              variant="outlined"
-              label="How many?"
+            <input
+              variant = 'standard'
+              size = 'large'
               margin="dense"
               id="howManyMade"
+              placeholder = '0'
               name={distanceFromBasket}
               type="number"
               onChange={(e) => onChange(e)}
@@ -123,8 +123,11 @@ export default function Practice(state) {
                 },
               }}
             />
-            <Typography variant="h3" style={{ marginLeft: "10px" }}>
-              / {parseInt(numberOfThrows) / 5}
+            <Typography variant="h3" >
+              / 
+            </Typography>
+            <Typography variant="h3" style={{ marginLeft: "20px" }}>
+               {parseInt(numberOfThrows) / 5}
             </Typography>
           </Grid>
           <Grid item className="form-field-container form-field">
