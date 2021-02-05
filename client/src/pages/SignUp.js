@@ -25,17 +25,17 @@ export default function SignUp() {
 
     // check for strong password
     //  8 Characters, 1 uppercase Letter, 1 Lowercase letter 1 Number, and 1 Special Character
-    // /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    // /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8}$/;
     // found regex at https://www.w3resource.com/javascript/form/password-validation.php
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
 
     if (passwordRegex.test(formData.password) !== true) {
       setErrors({
         password:
-          "Password must be 8 characters and have at least 1 uppercase, 1 lowercase, 1 number, and 1 special character",
+          "Password must be at least 8 characters and have at least 1 uppercase, 1 lowercase, 1 number, and 1 special character",
       });
       return console.log(
-        "Password must be 8 characters and have at least 1 uppercase, 1 lowercase, 1 number, and 1 special character"
+        "Password must be at least 8 characters and have at least 1 uppercase, 1 lowercase, 1 number, and 1 special character"
       );
     }
 
